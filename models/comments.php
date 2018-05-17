@@ -11,7 +11,7 @@
    }
    function displayComments($conn,$id)
    {   $displaycomments="SELECT * FROM comments WHERE track_id=$id";
-        $result=mysqli_query($conn,'SELECT * From comments WHERE track_id=$id');
+        $result=mysqli_query($conn,$displaycomments);
         if(!$result) echo 'cant query!!'.$result->error;
     else echo 'query successfully (connection)';
         while($row=mysqli_fetch_array($result))
@@ -23,14 +23,14 @@
   if(isset($_SESSION['user'])&&$_SESSION['user']==$row['username'])          
                     {  echo '<form class="editsubmit" action="models/comments_edit.php" method="POST">
                     <input type="hidden" name="trackid" value="'.$id.'">
-                    <input type="hidden" name="id" value="'.$row['id'].'">
+                    <input type="hidden" name="id" value="'.$row['track_id'].'">
 					<input type="hidden" name="message" value="'.$row['message'].'" >
 					<input class="editsubmit1" type="submit" name="edit1" value="EDIT"/>
 				  	</form>    
                     ';
                 echo '<form class="deletesubmit"action="'.deleteComments($conn).'" method="POST">
                       <input class="deletesubmit1" type="submit" name="delete" value="DELETE">
-                      <input type="hidden" name="id" value="'.$row['id'].'">
+                      <input type="hidden" name="id" value="'.$row['track_id'].'">
                       </form>';
                     }
                 echo "</div>";

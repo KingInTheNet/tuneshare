@@ -28,7 +28,7 @@ session_start();
         
     
     }
-    else echo 'Nếu Xóa thì ấn Dont Delete';
+    else echo 'Nếu Xóa thì ấn Delete';
     }
     else { header('location:../index2.php');}
 ?>
