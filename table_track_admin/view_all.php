@@ -40,6 +40,6 @@
     echo "</table>";
     echo " <div><p><a href='new_record.php'>Add New Record</a></p></div>";
  }
-    else { header('location:../index2.php');}
+    else { header('location:../home.php');}
 
 ?>

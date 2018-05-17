@@ -61,4 +61,4 @@ if(isset($_SESSION['admin']))
 </html>
 <?php
 }
-    else { header('location:../index2.php');} ?>
+    else { header('location:../home.php');} ?>

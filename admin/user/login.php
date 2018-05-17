@@ -4,7 +4,7 @@ session_start();
   		header('location:../../../index2.php');}
 */
 if (isset($_SESSION['user'])||(isset($_SESSION['admin']))){
-	header('location:../../../index2.php');
+	header('location:../../../home.php');
 }
 require '../../../models/user.php';
 
@@ -31,7 +31,7 @@ catch(Exception $e){
  	}
 
  echo "Login sucessfull <br>";
- header('location:../../../index2.php');
+ header('location:../../../home.php');
  }
 else{
 //Bật cờ lỗi

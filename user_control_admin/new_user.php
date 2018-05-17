@@ -11,13 +11,11 @@
     <head>
         <body>
         <form action="" method="POST" enctype="multipart/form-data"><!--enctype la bat buoc thi moi gui file dc-->
-            <strong>artist_id</strong><input type="text" name="artist_id" /><br/>
-            <strong>artist_avr    </strong><input type="file" name="UpLoadIMG" /><br/>
-            <strong>artist_cover</strong><input type="file" name="UpLoadMP3" /><br/> <!--name phan biet ca dau space :(( mat ca buoi chieu))-->
-            <strong>birthday(*years*month*day)</strong><input type="text" name="birthday" /><br/>
-            <strong>name</strong><input type="text" name="name" /><br/>
-            <strong>country  </strong><input type="text" name="country" /><br/>
-
+            <strong>user_id</strong><input type="text" name="user_id" /><br/>
+            <strong>user_avr    </strong><input type="file" name="UpLoadIMG" /><br/>
+            <!-- <strong>artist_cover</strong><input type="file" name="UpLoadMP3" /><br/>  --><!--name phan biet ca dau space :(( mat ca buoi chieu))-->
+            <strong>username</strong><input type="text" name="user_name" /><br/>
+            <strong>password</strong><input type="text" name="passwd" /><br/>
       
             <input type="submit" name="submit" value="Upload"/>
         </form>
@@ -29,12 +27,11 @@
     require '../configs/connect.php';
     if(isset($_POST['submit']))
     {   
-           $birthday=mysqli_real_escape_string($conn,$_POST['birthday']);// cai nay de loai bo ki tu dac biet chua hieu lam
-           $artist_id=mysqli_real_escape_string($conn,$_POST['artist_id']);
-            $name=mysqli_real_escape_string($conn,$_POST['name']);
-           $country=mysqli_real_escape_string($conn,$_POST['country']);
+           $user_id=mysqli_real_escape_string($conn,$_POST['user_id']);// cai nay de loai bo ki tu dac biet chua hieu lam
+           $user_name=mysqli_real_escape_string($conn,$_POST['user_name']);
+            $passwd=mysqli_real_escape_string($conn,$_POST['passwd']);
            
-        if($birthday==''||$name==''||$country=='')
+        if($name==''||$country=='')
         {       echo "Ban phai dien het cac o\n";}
         else{
           //Upload img
@@ -61,7 +58,7 @@
             {   move_uploaded_file($name_firstIMG,$folderIMG2.$name_endIMG);
                 echo "upfileIMG successfully\n";
             
-                $upALL=mysqli_query($conn,"INSERT INTO artist (artist_id,artist_avr,artist_cover,name,birthday,country) VALUES ('$artist_id','$folderIMG$name_endIMG','$folderIMG$name_endIMG','$birthday','$name','$country') ");
+                $upALL=mysqli_query($conn,"INSERT INTO user_info (user_id,avr,user_name,passwd) VALUES ('$user_id','$folderIMG$name_endIMG','$user_name','$passwd') ");
             }
             else {echo "failed: \n".$error['UpLoadIMG'];}
         
@@ -69,7 +66,7 @@
 
 
     }
-    } else { header('location:../index2.php');}
+    } else { header('location:../home.php');}
  
 
 ?>

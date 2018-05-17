@@ -6,7 +6,7 @@
 	//var_dump($category)
 	if(!isset($category))
 		{
-			include"index2.php";
+			include"home.php";
 		}
 		else
 	{

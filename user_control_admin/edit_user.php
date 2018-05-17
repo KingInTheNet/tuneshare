@@ -14,11 +14,10 @@ if(isset($_SESSION['admin']))
         <body>
         <strong>ID:</strong><?php echo $id ;?>
         <form action="" method="POST" enctype="multipart/form-data"><!--enctype la bat buoc thi moi gui file dc-->
-            <strong>artist_avr   </strong><input type="file" name="UpLoadIMG" /><br/>
-            <strong>artist_cover</strong><input type="file" name="UpLoadCOVER" /><br/> <!--name phan biet ca dau space :(( mat ca buoi chieu))-->
-            <strong>birthday(*years*month*day)</strong><input type="text" name="birthday" /><br/>
-            <strong>name</strong><input type="text" name="name" /><br/>
-            <strong>country</strong><input type="text" name="country" /><br/>
+            <strong>user_avr   </strong><input type="file" name="UpLoadIMG" /><br/>
+            <!-- <strong>artist_cover</strong><input type="file" name="UpLoadCOVER" /><br/> --> <!--name phan biet ca dau space :(( mat ca buoi chieu))-->
+            <strong>user_name</strong><input type="text" name="name" /><br/>
+            <strong>passwd</strong><input type="password" name="passwd" /><br/>
             <input type="submit" name="submit" value="Upload"/>
         </form>
         </body>
@@ -29,11 +28,11 @@ if(isset($_SESSION['admin']))
     require '../configs/connect.php';
     if(isset($_POST['submit']))
     {   
-           $birthday=mysqli_real_escape_string($conn,$_POST['birthday']);// cai nay de loai bo ki tu dac biet chua hieu lam
+           // $birthday=mysqli_real_escape_string($conn,$_POST['birthday']);// cai nay de loai bo ki tu dac biet chua hieu lam
             $name=mysqli_real_escape_string($conn,$_POST['name']);
-           $country=mysqli_real_escape_string($conn,$_POST['country']);
+           $passwd=mysqli_real_escape_string($conn,$_POST['passwd']);
            
-        if($birthday==''||$name==''||$country=='')
+        if($name==''||$country=='')
         {       echo "Ban phai dien het cac o\n";}
         else{
           //Upload img
@@ -62,7 +61,7 @@ if(isset($_SESSION['admin']))
             {   move_uploaded_file($name_firstIMG,$folderIMG2.$name_endIMG);
                 echo "upfileIMG successfully\n";
                 
-                $upALL=mysqli_query($conn,"UPDATE artist SET track_link='$folderIMG$name_endIMG', birthday='$birthday',artist_avr='$folderIMG$name_endIMG',name='$name',country='$country'  WHERE artist_id='$id'  ");
+                $upALL=mysqli_query($conn,"UPDATE user_info SET user_name='$name', artist_avr='$folderIMG$name_endIMG', passwd='$passwd'  WHERE artist_id='$id'  ");
             }
             else {echo "failed: \n".$error['UpLoadIMG'];}
         
@@ -70,7 +69,7 @@ if(isset($_SESSION['admin']))
 
 
     }
-    }  else { header('location:../index2.php');}
+    }  else { header('location:../home.php');}
  
 
 ?>

@@ -6,5 +6,5 @@ session_start();
 session_destroy();
 
 //Quay về trang đăng nhập
-header('location:../../index2.php');
+header('location:../../home.php');
 ?>

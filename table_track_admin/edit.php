@@ -80,7 +80,7 @@ if(isset($_SESSION['admin']))
 
 
     }
-    }  else { header('location:../index2.php');}
+    }  else { header('location:../home.php');}
  
 
 ?>
