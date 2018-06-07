@@ -55,7 +55,8 @@ if(isset($_SESSION['admin']))
          }
         
         ?>
-        <div><p><a href='new_user.php'>Add New Record</a></p></div>
+        <div><p><a href='new_artist.php'>Thêm mới</a></p></div>
+        <div><p><a href='../home.php'>Về trang chủ </a></p></div>
     </body>
 </html>
 <?php

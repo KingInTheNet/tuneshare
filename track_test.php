@@ -81,7 +81,7 @@ if(isset($_SESSION['user'])||isset($_SESSION['admin']))
 					echo    '<input type="hidden" name="username" value="'.$_SESSION['user'].'"/>';
 					echo    "<input type='hidden'  name='date' value='".date('Y-m-d H:i:s')."'>
 							<textarea name='message' ></textarea>
-							<input id='submit' type='submit' name='submit' value='コメントする'/>
+							<input id='submit' type='submit' name='submit' value='Comment'/>
 				  			</form>";
 			}
 					  displayComments($conn,$id);

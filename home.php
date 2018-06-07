@@ -179,7 +179,15 @@
 		<div id="sidebar">
 					<aside>
 						<h1>Top Bài Hát trong tuần</h1>
-						<ul>
+						<?php
+							require 'configs/connect.php';
+							$result = mysqli_query($conn,'SELECT * FROM track ORDER BY view DESC LIMIT 10');
+							if(!$result) echo 'cant query!!'.$result->error;
+							while($row=mysqli_fetch_array($result)){
+								echo '<li><a href="track_test.php?track_id='.$row['track_id'].'">'.$row['track_name'].'</a></li>';
+							}
+						?> 
+						<!-- <ul>
 							<li><a href="#">Chicken Attack</a></li>
 							<li><a href="#">Apple Pen</a></li>
 							<li><a href="#">Zen Zen Zense</a></li>
@@ -191,7 +199,7 @@
 							<li><a href="#">No.1</a></li>
 							<li><a href="#">Fuck it. Out of Ideas</a></li>
 								
-						</ul>
+						</ul> -->
 					</aside>
 		</div>
 		</section>

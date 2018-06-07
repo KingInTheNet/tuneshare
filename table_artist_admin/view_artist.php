@@ -4,7 +4,8 @@
     {
     //display data from table track
     //1.connect to database
-    echo "<p><a href='view_phan_trang.php'>View parts</a>";
+    echo "<p><a href='view_phan_trang.php'>View parts</a>
+    <div><p><a href='../home.php'>Về trang chủ </a></p></div>";
     require '../configs/connect.php';
     echo "<table border='1' cellpadding='10'>";
     echo "<tr>  <th>artist_id</th>
@@ -36,8 +37,9 @@
   
     }
     echo "</table>";
-    echo " <div><p><a href='new_artist.php'>Add New Record</a></p></div>";
+    echo " <div><p><a href='new_artist.php'>Thêm mới</a></p></div>
+        ";
  }
-    else { header('location:../index2.php');}
+    else { header('location:../home.php');}
 
 ?>

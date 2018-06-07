@@ -5,6 +5,7 @@ if(isset($_SESSION['admin']))
         {
             $id=$_GET['id'];
         }
+
 ?>
 
 <!DOCTYPE html>
@@ -12,6 +13,7 @@ if(isset($_SESSION['admin']))
     <title>Edit_Record-<?php echo $id ;?></title>
     <head>
         <body>
+            <div><p><a href='../home.php'>Về trang chủ </a></p></div>
         <strong>ID:</strong><?php echo $id ;?>
         <form action="" method="POST" enctype="multipart/form-data"><!--enctype la bat buoc thi moi gui file dc-->
             <strong>track_avt    </strong><input type="file" name="UpLoadIMG" /><br/>
@@ -19,7 +21,7 @@ if(isset($_SESSION['admin']))
             <strong>publishment(*year)</strong><input type="text" name="years" /><br/>
             <strong>track_name  </strong><input type="text" name="nametrack" /><br/>
             <strong>name_art    </strong><input type="text" name="nameartist" /><br/>
-            <input type="submit" name="submit" value="Upload"/>
+            <input type="submit" name="submit" value="Update"/>
         </form>
         </body>
     </head>
@@ -27,6 +29,32 @@ if(isset($_SESSION['admin']))
 <?php
 
     require '../configs/connect.php';
+    $result = mysqli_query($conn,"SELECT * FROM track WHERE track_id=$id");
+    if(!$result) echo "query fail lòi".$result->$error;
+    $row=mysqli_fetch_array($result);
+    $cat = $row['category'];
+    $result2 = mysqli_query($conn,"SELECT * FROM category WHERE cate_id=$cat");
+    if(!$result2) echo "query fail lòi".$result2->$error;
+    $row2=mysqli_fetch_array($result2);
+  echo "<table border='1' cellpadding='10'>";
+    echo "<tr>  <th>track_id</th> 
+                <th>category</th>
+                <th>publishment</th>
+                <th>track_name</th>
+                <th>track_link</th>
+                <th>track_avt</th>
+                <th>name_art</th>
+                
+         </tr>";
+    echo "<tr>  <th>".$row['track_id']."</th> 
+                <th>".$row2['cate_name']."</th>
+                <th>".$row['publishment']."</th>
+                <th>".$row['track_name']."</th>
+                <th>".$row['track_link']."</th>
+                <th>".$row['track_avt']."</th>
+                <th>".$row['name_art']."</th>
+                
+         </tr>";
     if(isset($_POST['submit']))
     {   
            $publishment=mysqli_real_escape_string($conn,$_POST['years']);// cai nay de loai bo ki tu dac biet chua hieu lam
